@@ -1,0 +1,66 @@
+﻿@model MVCZakazivanjePregleda.Models.tblDoktor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Informacije o doktoru</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.imeDoktora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imeDoktora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prezimeDoktora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prezimeDoktora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datumRodjenjaDoktora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datumRodjenjaDoktora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.brojTelefonaDoktora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.brojTelefonaDoktora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.brojLicence)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.brojLicence)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.specijalizacija)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.specijalizacija)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <!--  @Html.ActionLink("Izmeni", "Edit", new { id = Model.doktorID }) | -->
+    @Html.ActionLink("Lista doktora", "Index")
+</p>

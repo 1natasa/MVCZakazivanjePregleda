@@ -1,0 +1,82 @@
+﻿@model MVCZakazivanjePregleda.Models.tblPacijent
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Informacije o pacijentu</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.imePacijenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imePacijenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prezimePacijenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prezimePacijenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adresaPacijenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adresaPacijenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.polPacijenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.polPacijenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datumRodjenjaPacijenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datumRodjenjaPacijenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jmbgPacijenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jmbgPacijenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.brojTelefonaPacijenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.brojTelefonaPacijenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lbo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lbo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <!-- @Html.ActionLink("Izmeni", "Edit", new { id = Model.pacijentID }) -->
+    @Html.ActionLink("List pacijenata", "Index")
+</p>

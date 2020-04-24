@@ -1,0 +1,80 @@
+﻿@model IEnumerable<MVCZakazivanjePregleda.Models.tblPacijent>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista pacijenata</h2>
+
+<p>
+    @Html.ActionLink("Kreiraj novog pacijenta", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.imePacijenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prezimePacijenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adresaPacijenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.polPacijenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.datumRodjenjaPacijenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jmbgPacijenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.brojTelefonaPacijenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lbo)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.imePacijenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prezimePacijenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.adresaPacijenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.polPacijenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datumRodjenjaPacijenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.jmbgPacijenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.brojTelefonaPacijenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lbo)
+            </td>
+            <td>
+                @Html.ActionLink("Izmeni", "Edit", new { id = item.pacijentID }) |
+                @Html.ActionLink("Detalji", "Details", new { id = item.pacijentID }) |
+                @Html.ActionLink("Obriši", "Delete", new { id = item.pacijentID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @Html.ActionLink("Naslovna strana", "Index", "Home")
+</div>

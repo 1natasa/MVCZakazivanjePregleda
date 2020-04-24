@@ -1,0 +1,34 @@
+﻿@model MVCZakazivanjePregleda.Models.tblTipPregleda
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Informacije o tipovima pregleda</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nazivTipaPregleda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nazivTipaPregleda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblVrstaPregleda.nazivVrstePregleda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblVrstaPregleda.nazivVrstePregleda)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Izmeni", "Edit", new { id = Model.tipPregledaID }) |
+    @Html.ActionLink("Lista tipova pregleda", "Index")
+</p>

@@ -1,0 +1,48 @@
+﻿@model MVCZakazivanjePregleda.Models.tblUstanova
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Birsanje ustanove</h2>
+
+<h3>Da li ste sigurni da želite da obrišete?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nazivUstanove)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nazivUstanove)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adresaUstanove)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adresaUstanove)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mestoUstanove)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mestoUstanove)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Obriši" class="btn btn-default" /> |
+            @Html.ActionLink("Lista ustanova", "Index")
+        </div>
+    }
+</div>

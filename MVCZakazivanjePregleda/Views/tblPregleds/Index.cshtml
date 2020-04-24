@@ -1,0 +1,81 @@
+﻿@model IEnumerable<MVCZakazivanjePregleda.Models.tblPregled>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Lista pregleda</h2>
+
+<p>
+    @Html.ActionLink("Kreiraj novi pregled", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.terminPregleda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vremePregleda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dodatneNapomene)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblDoktor.doktor)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblPacijent.pacijent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblUstanova.ustanova)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblVrstaPregleda.nazivVrstePregleda)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.terminPregleda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vremePregleda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dodatneNapomene)
+            </td>
+            <td>
+
+                @Html.DisplayFor(modelItem => item.tblDoktor.doktor)
+
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tblPacijent.pacijent)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tblUstanova.ustanova)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tblVrstaPregleda.nazivVrstePregleda)
+            </td>
+            <td>
+                @Html.ActionLink("Izmeni", "Edit", new { id = item.pregledID }) |
+                @Html.ActionLink("Detalji", "Details", new { id = item.pregledID }) |
+                @Html.ActionLink("Obriši", "Delete", new { id = item.pregledID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<div>
+    @Html.ActionLink("Naslovna strana", "Index", "Home")
+</div>

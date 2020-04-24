@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MVCZakazivanjePregleda.Models.tblDoktor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista doktora</h2>
+
+<p>
+    @Html.ActionLink("Kreiraj novog doktora", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.imeDoktora)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prezimeDoktora)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.datumRodjenjaDoktora)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.brojTelefonaDoktora)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.brojLicence)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.specijalizacija)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.imeDoktora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prezimeDoktora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.datumRodjenjaDoktora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.brojTelefonaDoktora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.brojLicence)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.specijalizacija)
+        </td>
+        <td>
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.doktorID }) |
+            @Html.ActionLink("Detalji", "Details", new { id=item.doktorID }) |
+            @Html.ActionLink("Obriši", "Delete", new { id=item.doktorID })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Naslovna strana", "Index", "Home")
+</div>

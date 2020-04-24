@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MVCZakazivanjePregleda.Models.tblUstanova>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista ustanova</h2>
+
+<p>
+    @Html.ActionLink("Kreiraj novu ustanovu", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nazivUstanove)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adresaUstanove)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mestoUstanove)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nazivUstanove)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adresaUstanove)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mestoUstanove)
+        </td>
+        <td>
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.ustanovaID }) |
+            @Html.ActionLink("Detalji", "Details", new { id=item.ustanovaID }) |
+            @Html.ActionLink("Obriši", "Delete", new { id=item.ustanovaID })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Naslovna strana", "Index", "Home")
+</div>

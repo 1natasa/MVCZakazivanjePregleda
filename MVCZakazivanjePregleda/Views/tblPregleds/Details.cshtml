@@ -1,0 +1,78 @@
+﻿@model MVCZakazivanjePregleda.Models.tblPregled
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Informacije o pregledu</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.terminPregleda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.terminPregleda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vremePregleda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vremePregleda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dodatneNapomene)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dodatneNapomene)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblDoktor.imeDoktora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblDoktor.imeDoktora)
+            @Html.DisplayFor(model => model.tblDoktor.prezimeDoktora)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblPacijent.imePacijenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblPacijent.imePacijenta)
+            @Html.DisplayFor(model => model.tblPacijent.prezimePacijenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUstanova.nazivUstanove)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUstanova.nazivUstanove)
+            @Html.DisplayFor(model => model.tblUstanova.mestoUstanove)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblVrstaPregleda.nazivVrstePregleda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblVrstaPregleda.nazivVrstePregleda)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Izmeni", "Edit", new { id = Model.pregledID }) |
+    @Html.ActionLink("Lista pregleda", "Index")
+</p>

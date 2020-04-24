@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MVCZakazivanjePregleda.Models.tblPodtipPregleda>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista podtipova pregleda</h2>
+
+<p>
+    @Html.ActionLink("Kreiraj novi podtip pregleda", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nazivPodtipaPregleda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblTipPregleda.nazivTipaPregleda)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nazivPodtipaPregleda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblTipPregleda.nazivTipaPregleda)
+        </td>
+        <td>
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.podtipPregledaID }) |
+            @Html.ActionLink("Detalji", "Details", new { id=item.podtipPregledaID }) |
+            @Html.ActionLink("Obriši", "Delete", new { id=item.podtipPregledaID })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Naslovna strana", "Index", "Home")
+</div>

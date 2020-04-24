@@ -1,0 +1,32 @@
+﻿@model MVCZakazivanjePregleda.Models.tblVrstaPregleda
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Brisanje</h2>
+
+<h3>Da li ste sigurni da želite da obrišete?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nazivVrstePregleda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nazivVrstePregleda)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Obriši" class="btn btn-default" /> |
+            @Html.ActionLink("Lista vrsta pregleda", "Index")
+        </div>
+    }
+</div>

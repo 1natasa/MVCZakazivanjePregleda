@@ -1,0 +1,37 @@
+﻿@model IEnumerable<MVCZakazivanjePregleda.Models.tblVrstaPregleda>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista vrsta pregleda</h2>
+
+<p>
+    @Html.ActionLink("Kreiraj novu vrstu pregleda", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nazivVrstePregleda)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nazivVrstePregleda)
+        </td>
+        <td>
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.vrstaPregledaID }) |
+            @Html.ActionLink("Detalji", "Details", new { id=item.vrstaPregledaID }) |
+            @Html.ActionLink("Obriši", "Delete", new { id=item.vrstaPregledaID })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Naslovna strana", "Index", "Home")
+</div>

@@ -1,0 +1,40 @@
+﻿@model MVCZakazivanjePregleda.Models.tblTipPregleda
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Brisanje tipa pregleda</h2>
+
+<h3>Da li ste sigurni da želite da obrišete?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nazivTipaPregleda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nazivTipaPregleda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblVrstaPregleda.nazivVrstePregleda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblVrstaPregleda.nazivVrstePregleda)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Obriši" class="btn btn-default" /> |
+            @Html.ActionLink("Lista tipova pregleda", "Index")
+        </div>
+    }
+</div>

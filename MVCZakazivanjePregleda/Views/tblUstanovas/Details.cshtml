@@ -1,0 +1,42 @@
+﻿@model MVCZakazivanjePregleda.Models.tblUstanova
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Informacije o ustanovi</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nazivUstanove)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nazivUstanove)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adresaUstanove)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adresaUstanove)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mestoUstanove)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mestoUstanove)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Izmeni", "Edit", new { id = Model.ustanovaID }) |
+    @Html.ActionLink("Lista ustanova", "Index")
+</p>

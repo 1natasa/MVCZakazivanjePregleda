@@ -1,0 +1,887 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ZakazivanjePregledaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblDoktor">
+          <Key>
+            <PropertyRef Name="doktorID" />
+          </Key>
+          <Property Name="doktorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imeDoktora" Type="nvarchar" MaxLength="50" />
+          <Property Name="prezimeDoktora" Type="nvarchar" MaxLength="50" />
+          <Property Name="datumRodjenjaDoktora" Type="date" />
+          <Property Name="brojTelefonaDoktora" Type="nvarchar" MaxLength="50" />
+          <Property Name="brojLicence" Type="nvarchar" MaxLength="50" />
+          <Property Name="specijalizacija" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblKorisnik">
+          <Key>
+            <PropertyRef Name="korisnikID" />
+          </Key>
+          <Property Name="korisnikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sifraKorisnika" Type="nvarchar" MaxLength="50" />
+          <Property Name="emailKorisnika" Type="nvarchar" MaxLength="50" />
+          <Property Name="potvrdjenaSifraKorisnika" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblPacijent">
+          <Key>
+            <PropertyRef Name="pacijentID" />
+          </Key>
+          <Property Name="pacijentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imePacijenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="prezimePacijenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="adresaPacijenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="polPacijenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="datumRodjenjaPacijenta" Type="date" />
+          <Property Name="jmbgPacijenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="brojTelefonaPacijenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="lbo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblPodtipPregleda">
+          <Key>
+            <PropertyRef Name="podtipPregledaID" />
+          </Key>
+          <Property Name="podtipPregledaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazivPodtipaPregleda" Type="nvarchar" MaxLength="50" />
+          <Property Name="tipPregledaID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblPregled">
+          <Key>
+            <PropertyRef Name="pregledID" />
+          </Key>
+          <Property Name="pregledID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="terminPregleda" Type="date" />
+          <Property Name="vremePregleda" Type="time" Precision="7" />
+          <Property Name="dodatneNapomene" Type="nvarchar" MaxLength="50" />
+          <Property Name="ustanovaID" Type="int" />
+          <Property Name="pacijentID" Type="int" />
+          <Property Name="vrstaPregledaID" Type="int" />
+          <Property Name="doktorID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblTipPregleda">
+          <Key>
+            <PropertyRef Name="tipPregledaID" />
+          </Key>
+          <Property Name="tipPregledaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazivTipaPregleda" Type="nvarchar" MaxLength="50" />
+          <Property Name="vrstaPregledaID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblUstanova">
+          <Key>
+            <PropertyRef Name="ustanovaID" />
+          </Key>
+          <Property Name="ustanovaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazivUstanove" Type="nvarchar" MaxLength="50" />
+          <Property Name="adresaUstanove" Type="nvarchar" MaxLength="50" />
+          <Property Name="mestoUstanove" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblVrstaPregleda">
+          <Key>
+            <PropertyRef Name="vrstaPregledaID" />
+          </Key>
+          <Property Name="vrstaPregledaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazivVrstePregleda" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ZakazivanjePregleda.dbo.vwDoktor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwDoktor">
+          <Key>
+            <PropertyRef Name="doktorID" />
+          </Key>
+          <Property Name="doktorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imeDoktora" Type="nvarchar" MaxLength="50" />
+          <Property Name="prezimeDoktora" Type="nvarchar" MaxLength="50" />
+          <Property Name="datumRodjenjaDoktora" Type="date" />
+          <Property Name="brojTelefonaDoktora" Type="nvarchar" MaxLength="50" />
+          <Property Name="brojLicence" Type="nvarchar" MaxLength="50" />
+          <Property Name="specijalizacija" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ZakazivanjePregleda.dbo.vwPacijent' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwPacijent">
+          <Key>
+            <PropertyRef Name="pacijentID" />
+          </Key>
+          <Property Name="pacijentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imePacijenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="prezimePacijenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="adresaPacijenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="polPacijenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="datumRodjenjaPacijenta" Type="date" />
+          <Property Name="jmbgPacijenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="brojTelefonaPacijenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="lbo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ZakazivanjePregleda.dbo.vwPodtipPregleda' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwPodtipPregleda">
+          <Key>
+            <PropertyRef Name="podtipPregledaID" />
+          </Key>
+          <Property Name="podtipPregledaID" Type="int" Nullable="false" />
+          <Property Name="nazivPodtipaPregleda" Type="nvarchar" MaxLength="50" />
+          <Property Name="tipPregledaID" Type="int" />
+          <Property Name="nazivTipaPregleda" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ZakazivanjePregleda.dbo.vwPregled' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwPregled">
+          <Key>
+            <PropertyRef Name="pregledID" />
+          </Key>
+          <Property Name="pregledID" Type="int" Nullable="false" />
+          <Property Name="terminPregleda" Type="date" />
+          <Property Name="vremePregleda" Type="time" Precision="7" />
+          <Property Name="dodatneNapomene" Type="nvarchar" MaxLength="50" />
+          <Property Name="ustanovaID" Type="int" />
+          <Property Name="pacijentID" Type="int" />
+          <Property Name="vrstaPregledaID" Type="int" />
+          <Property Name="doktorID" Type="int" />
+          <Property Name="imePacijenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="prezimePacijenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="imeDoktora" Type="nvarchar" MaxLength="50" />
+          <Property Name="prezimeDoktora" Type="nvarchar" MaxLength="50" />
+          <Property Name="specijalizacija" Type="nvarchar" MaxLength="50" />
+          <Property Name="nazivUstanove" Type="nvarchar" MaxLength="50" />
+          <Property Name="nazivVrstePregleda" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ZakazivanjePregleda.dbo.vwTipPregleda' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwTipPregleda">
+          <Key>
+            <PropertyRef Name="tipPregledaID" />
+          </Key>
+          <Property Name="tipPregledaID" Type="int" Nullable="false" />
+          <Property Name="nazivTipaPregleda" Type="nvarchar" MaxLength="50" />
+          <Property Name="vrstaPregledaID" Type="int" />
+          <Property Name="nazivVrstePregleda" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ZakazivanjePregleda.dbo.vwUstanova' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwUstanova">
+          <Key>
+            <PropertyRef Name="ustanovaID" />
+          </Key>
+          <Property Name="ustanovaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazivUstanove" Type="nvarchar" MaxLength="50" />
+          <Property Name="adresaUstanove" Type="nvarchar" MaxLength="50" />
+          <Property Name="mestoUstanove" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ZakazivanjePregleda.dbo.vwVrstaPregleda' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwVrstaPregleda">
+          <Key>
+            <PropertyRef Name="vrstaPregledaID" />
+          </Key>
+          <Property Name="vrstaPregledaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazivVrstePregleda" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_tblPodtipPregleda_tblTipPregleda">
+          <End Role="tblTipPregleda" Type="Self.tblTipPregleda" Multiplicity="0..1" />
+          <End Role="tblPodtipPregleda" Type="Self.tblPodtipPregleda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTipPregleda">
+              <PropertyRef Name="tipPregledaID" />
+            </Principal>
+            <Dependent Role="tblPodtipPregleda">
+              <PropertyRef Name="tipPregledaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPregled_tblDoktor">
+          <End Role="tblDoktor" Type="Self.tblDoktor" Multiplicity="0..1" />
+          <End Role="tblPregled" Type="Self.tblPregled" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDoktor">
+              <PropertyRef Name="doktorID" />
+            </Principal>
+            <Dependent Role="tblPregled">
+              <PropertyRef Name="doktorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPregled_tblPacijent">
+          <End Role="tblPacijent" Type="Self.tblPacijent" Multiplicity="0..1" />
+          <End Role="tblPregled" Type="Self.tblPregled" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPacijent">
+              <PropertyRef Name="pacijentID" />
+            </Principal>
+            <Dependent Role="tblPregled">
+              <PropertyRef Name="pacijentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPregled_tblUstanova">
+          <End Role="tblUstanova" Type="Self.tblUstanova" Multiplicity="0..1" />
+          <End Role="tblPregled" Type="Self.tblPregled" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUstanova">
+              <PropertyRef Name="ustanovaID" />
+            </Principal>
+            <Dependent Role="tblPregled">
+              <PropertyRef Name="ustanovaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPregled_tblVrstaPregleda">
+          <End Role="tblVrstaPregleda" Type="Self.tblVrstaPregleda" Multiplicity="0..1" />
+          <End Role="tblPregled" Type="Self.tblPregled" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVrstaPregleda">
+              <PropertyRef Name="vrstaPregledaID" />
+            </Principal>
+            <Dependent Role="tblPregled">
+              <PropertyRef Name="vrstaPregledaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTipPregleda_tblVrstaPregleda">
+          <End Role="tblVrstaPregleda" Type="Self.tblVrstaPregleda" Multiplicity="0..1" />
+          <End Role="tblTipPregleda" Type="Self.tblTipPregleda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVrstaPregleda">
+              <PropertyRef Name="vrstaPregledaID" />
+            </Principal>
+            <Dependent Role="tblTipPregleda">
+              <PropertyRef Name="vrstaPregledaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ZakazivanjePregledaModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDoktor" EntityType="Self.tblDoktor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblKorisnik" EntityType="Self.tblKorisnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPacijent" EntityType="Self.tblPacijent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPodtipPregleda" EntityType="Self.tblPodtipPregleda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPregled" EntityType="Self.tblPregled" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTipPregleda" EntityType="Self.tblTipPregleda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUstanova" EntityType="Self.tblUstanova" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblVrstaPregleda" EntityType="Self.tblVrstaPregleda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vwDoktor" EntityType="Self.vwDoktor" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwDoktor].[doktorID] AS [doktorID], 
+    [vwDoktor].[imeDoktora] AS [imeDoktora], 
+    [vwDoktor].[prezimeDoktora] AS [prezimeDoktora], 
+    [vwDoktor].[datumRodjenjaDoktora] AS [datumRodjenjaDoktora], 
+    [vwDoktor].[brojTelefonaDoktora] AS [brojTelefonaDoktora], 
+    [vwDoktor].[brojLicence] AS [brojLicence], 
+    [vwDoktor].[specijalizacija] AS [specijalizacija]
+    FROM [dbo].[vwDoktor] AS [vwDoktor]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwPacijent" EntityType="Self.vwPacijent" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwPacijent].[pacijentID] AS [pacijentID], 
+    [vwPacijent].[imePacijenta] AS [imePacijenta], 
+    [vwPacijent].[prezimePacijenta] AS [prezimePacijenta], 
+    [vwPacijent].[adresaPacijenta] AS [adresaPacijenta], 
+    [vwPacijent].[polPacijenta] AS [polPacijenta], 
+    [vwPacijent].[datumRodjenjaPacijenta] AS [datumRodjenjaPacijenta], 
+    [vwPacijent].[jmbgPacijenta] AS [jmbgPacijenta], 
+    [vwPacijent].[brojTelefonaPacijenta] AS [brojTelefonaPacijenta], 
+    [vwPacijent].[lbo] AS [lbo]
+    FROM [dbo].[vwPacijent] AS [vwPacijent]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwPodtipPregleda" EntityType="Self.vwPodtipPregleda" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwPodtipPregleda].[podtipPregledaID] AS [podtipPregledaID], 
+    [vwPodtipPregleda].[nazivPodtipaPregleda] AS [nazivPodtipaPregleda], 
+    [vwPodtipPregleda].[tipPregledaID] AS [tipPregledaID], 
+    [vwPodtipPregleda].[nazivTipaPregleda] AS [nazivTipaPregleda]
+    FROM [dbo].[vwPodtipPregleda] AS [vwPodtipPregleda]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwPregled" EntityType="Self.vwPregled" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwPregled].[pregledID] AS [pregledID], 
+    [vwPregled].[terminPregleda] AS [terminPregleda], 
+    [vwPregled].[vremePregleda] AS [vremePregleda], 
+    [vwPregled].[dodatneNapomene] AS [dodatneNapomene], 
+    [vwPregled].[ustanovaID] AS [ustanovaID], 
+    [vwPregled].[pacijentID] AS [pacijentID], 
+    [vwPregled].[vrstaPregledaID] AS [vrstaPregledaID], 
+    [vwPregled].[doktorID] AS [doktorID], 
+    [vwPregled].[imePacijenta] AS [imePacijenta], 
+    [vwPregled].[prezimePacijenta] AS [prezimePacijenta], 
+    [vwPregled].[imeDoktora] AS [imeDoktora], 
+    [vwPregled].[prezimeDoktora] AS [prezimeDoktora], 
+    [vwPregled].[specijalizacija] AS [specijalizacija], 
+    [vwPregled].[nazivUstanove] AS [nazivUstanove], 
+    [vwPregled].[nazivVrstePregleda] AS [nazivVrstePregleda]
+    FROM [dbo].[vwPregled] AS [vwPregled]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwTipPregleda" EntityType="Self.vwTipPregleda" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwTipPregleda].[tipPregledaID] AS [tipPregledaID], 
+    [vwTipPregleda].[nazivTipaPregleda] AS [nazivTipaPregleda], 
+    [vwTipPregleda].[vrstaPregledaID] AS [vrstaPregledaID], 
+    [vwTipPregleda].[nazivVrstePregleda] AS [nazivVrstePregleda]
+    FROM [dbo].[vwTipPregleda] AS [vwTipPregleda]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwUstanova" EntityType="Self.vwUstanova" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwUstanova].[ustanovaID] AS [ustanovaID], 
+    [vwUstanova].[nazivUstanove] AS [nazivUstanove], 
+    [vwUstanova].[adresaUstanove] AS [adresaUstanove], 
+    [vwUstanova].[mestoUstanove] AS [mestoUstanove]
+    FROM [dbo].[vwUstanova] AS [vwUstanova]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwVrstaPregleda" EntityType="Self.vwVrstaPregleda" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwVrstaPregleda].[vrstaPregledaID] AS [vrstaPregledaID], 
+    [vwVrstaPregleda].[nazivVrstePregleda] AS [nazivVrstePregleda]
+    FROM [dbo].[vwVrstaPregleda] AS [vwVrstaPregleda]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tblPodtipPregleda_tblTipPregleda" Association="Self.FK_tblPodtipPregleda_tblTipPregleda">
+            <End Role="tblTipPregleda" EntitySet="tblTipPregleda" />
+            <End Role="tblPodtipPregleda" EntitySet="tblPodtipPregleda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPregled_tblDoktor" Association="Self.FK_tblPregled_tblDoktor">
+            <End Role="tblDoktor" EntitySet="tblDoktor" />
+            <End Role="tblPregled" EntitySet="tblPregled" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPregled_tblPacijent" Association="Self.FK_tblPregled_tblPacijent">
+            <End Role="tblPacijent" EntitySet="tblPacijent" />
+            <End Role="tblPregled" EntitySet="tblPregled" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPregled_tblUstanova" Association="Self.FK_tblPregled_tblUstanova">
+            <End Role="tblUstanova" EntitySet="tblUstanova" />
+            <End Role="tblPregled" EntitySet="tblPregled" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPregled_tblVrstaPregleda" Association="Self.FK_tblPregled_tblVrstaPregleda">
+            <End Role="tblVrstaPregleda" EntitySet="tblVrstaPregleda" />
+            <End Role="tblPregled" EntitySet="tblPregled" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTipPregleda_tblVrstaPregleda" Association="Self.FK_tblTipPregleda_tblVrstaPregleda">
+            <End Role="tblVrstaPregleda" EntitySet="tblVrstaPregleda" />
+            <End Role="tblTipPregleda" EntitySet="tblTipPregleda" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ZakazivanjePregledaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblDoktor">
+          <Key>
+            <PropertyRef Name="doktorID" />
+          </Key>
+          <Property Name="doktorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imeDoktora" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="prezimeDoktora" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="datumRodjenjaDoktora" Type="DateTime" Precision="0" />
+          <Property Name="brojTelefonaDoktora" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="brojLicence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="specijalizacija" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblPregleds" Relationship="Self.FK_tblPregled_tblDoktor" FromRole="tblDoktor" ToRole="tblPregled" />
+        </EntityType>
+        <EntityType Name="tblKorisnik">
+          <Key>
+            <PropertyRef Name="korisnikID" />
+          </Key>
+          <Property Name="korisnikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sifraKorisnika" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emailKorisnika" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="potvrdjenaSifraKorisnika" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblPacijent">
+          <Key>
+            <PropertyRef Name="pacijentID" />
+          </Key>
+          <Property Name="pacijentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imePacijenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="prezimePacijenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="adresaPacijenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="polPacijenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="datumRodjenjaPacijenta" Type="DateTime" Precision="0" />
+          <Property Name="jmbgPacijenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="brojTelefonaPacijenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lbo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblPregleds" Relationship="Self.FK_tblPregled_tblPacijent" FromRole="tblPacijent" ToRole="tblPregled" />
+        </EntityType>
+        <EntityType Name="tblPodtipPregleda">
+          <Key>
+            <PropertyRef Name="podtipPregledaID" />
+          </Key>
+          <Property Name="podtipPregledaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazivPodtipaPregleda" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tipPregledaID" Type="Int32" />
+          <NavigationProperty Name="tblTipPregleda" Relationship="Self.FK_tblPodtipPregleda_tblTipPregleda" FromRole="tblPodtipPregleda" ToRole="tblTipPregleda" />
+        </EntityType>
+        <EntityType Name="tblPregled">
+          <Key>
+            <PropertyRef Name="pregledID" />
+          </Key>
+          <Property Name="pregledID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="terminPregleda" Type="DateTime" Precision="0" />
+          <Property Name="vremePregleda" Type="Time" Precision="7" />
+          <Property Name="dodatneNapomene" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ustanovaID" Type="Int32" />
+          <Property Name="pacijentID" Type="Int32" />
+          <Property Name="vrstaPregledaID" Type="Int32" />
+          <Property Name="doktorID" Type="Int32" />
+          <NavigationProperty Name="tblDoktor" Relationship="Self.FK_tblPregled_tblDoktor" FromRole="tblPregled" ToRole="tblDoktor" />
+          <NavigationProperty Name="tblPacijent" Relationship="Self.FK_tblPregled_tblPacijent" FromRole="tblPregled" ToRole="tblPacijent" />
+          <NavigationProperty Name="tblUstanova" Relationship="Self.FK_tblPregled_tblUstanova" FromRole="tblPregled" ToRole="tblUstanova" />
+          <NavigationProperty Name="tblVrstaPregleda" Relationship="Self.FK_tblPregled_tblVrstaPregleda" FromRole="tblPregled" ToRole="tblVrstaPregleda" />
+        </EntityType>
+        <EntityType Name="tblTipPregleda">
+          <Key>
+            <PropertyRef Name="tipPregledaID" />
+          </Key>
+          <Property Name="tipPregledaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazivTipaPregleda" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="vrstaPregledaID" Type="Int32" />
+          <NavigationProperty Name="tblPodtipPregledas" Relationship="Self.FK_tblPodtipPregleda_tblTipPregleda" FromRole="tblTipPregleda" ToRole="tblPodtipPregleda" />
+          <NavigationProperty Name="tblVrstaPregleda" Relationship="Self.FK_tblTipPregleda_tblVrstaPregleda" FromRole="tblTipPregleda" ToRole="tblVrstaPregleda" />
+        </EntityType>
+        <EntityType Name="tblUstanova">
+          <Key>
+            <PropertyRef Name="ustanovaID" />
+          </Key>
+          <Property Name="ustanovaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazivUstanove" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="adresaUstanove" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mestoUstanove" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblPregleds" Relationship="Self.FK_tblPregled_tblUstanova" FromRole="tblUstanova" ToRole="tblPregled" />
+        </EntityType>
+        <EntityType Name="tblVrstaPregleda">
+          <Key>
+            <PropertyRef Name="vrstaPregledaID" />
+          </Key>
+          <Property Name="vrstaPregledaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazivVrstePregleda" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblPregleds" Relationship="Self.FK_tblPregled_tblVrstaPregleda" FromRole="tblVrstaPregleda" ToRole="tblPregled" />
+          <NavigationProperty Name="tblTipPregledas" Relationship="Self.FK_tblTipPregleda_tblVrstaPregleda" FromRole="tblVrstaPregleda" ToRole="tblTipPregleda" />
+        </EntityType>
+        <EntityType Name="vwDoktor">
+          <Key>
+            <PropertyRef Name="doktorID" />
+          </Key>
+          <Property Name="doktorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imeDoktora" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="prezimeDoktora" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="datumRodjenjaDoktora" Type="DateTime" Precision="0" />
+          <Property Name="brojTelefonaDoktora" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="brojLicence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="specijalizacija" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwPacijent">
+          <Key>
+            <PropertyRef Name="pacijentID" />
+          </Key>
+          <Property Name="pacijentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imePacijenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="prezimePacijenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="adresaPacijenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="polPacijenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="datumRodjenjaPacijenta" Type="DateTime" Precision="0" />
+          <Property Name="jmbgPacijenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="brojTelefonaPacijenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lbo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwPodtipPregleda">
+          <Key>
+            <PropertyRef Name="podtipPregledaID" />
+          </Key>
+          <Property Name="podtipPregledaID" Type="Int32" Nullable="false" />
+          <Property Name="nazivPodtipaPregleda" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tipPregledaID" Type="Int32" />
+          <Property Name="nazivTipaPregleda" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwTipPregleda">
+          <Key>
+            <PropertyRef Name="tipPregledaID" />
+          </Key>
+          <Property Name="tipPregledaID" Type="Int32" Nullable="false" />
+          <Property Name="nazivTipaPregleda" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="vrstaPregledaID" Type="Int32" />
+          <Property Name="nazivVrstePregleda" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwUstanova">
+          <Key>
+            <PropertyRef Name="ustanovaID" />
+          </Key>
+          <Property Name="ustanovaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazivUstanove" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="adresaUstanove" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mestoUstanove" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwVrstaPregleda">
+          <Key>
+            <PropertyRef Name="vrstaPregledaID" />
+          </Key>
+          <Property Name="vrstaPregledaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazivVrstePregleda" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_tblPregled_tblDoktor">
+          <End Role="tblDoktor" Type="Self.tblDoktor" Multiplicity="0..1" />
+          <End Role="tblPregled" Type="Self.tblPregled" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDoktor">
+              <PropertyRef Name="doktorID" />
+            </Principal>
+            <Dependent Role="tblPregled">
+              <PropertyRef Name="doktorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPregled_tblPacijent">
+          <End Role="tblPacijent" Type="Self.tblPacijent" Multiplicity="0..1" />
+          <End Role="tblPregled" Type="Self.tblPregled" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPacijent">
+              <PropertyRef Name="pacijentID" />
+            </Principal>
+            <Dependent Role="tblPregled">
+              <PropertyRef Name="pacijentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPodtipPregleda_tblTipPregleda">
+          <End Role="tblTipPregleda" Type="Self.tblTipPregleda" Multiplicity="0..1" />
+          <End Role="tblPodtipPregleda" Type="Self.tblPodtipPregleda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTipPregleda">
+              <PropertyRef Name="tipPregledaID" />
+            </Principal>
+            <Dependent Role="tblPodtipPregleda">
+              <PropertyRef Name="tipPregledaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPregled_tblUstanova">
+          <End Role="tblUstanova" Type="Self.tblUstanova" Multiplicity="0..1" />
+          <End Role="tblPregled" Type="Self.tblPregled" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUstanova">
+              <PropertyRef Name="ustanovaID" />
+            </Principal>
+            <Dependent Role="tblPregled">
+              <PropertyRef Name="ustanovaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPregled_tblVrstaPregleda">
+          <End Role="tblVrstaPregleda" Type="Self.tblVrstaPregleda" Multiplicity="0..1" />
+          <End Role="tblPregled" Type="Self.tblPregled" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVrstaPregleda">
+              <PropertyRef Name="vrstaPregledaID" />
+            </Principal>
+            <Dependent Role="tblPregled">
+              <PropertyRef Name="vrstaPregledaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTipPregleda_tblVrstaPregleda">
+          <End Role="tblVrstaPregleda" Type="Self.tblVrstaPregleda" Multiplicity="0..1" />
+          <End Role="tblTipPregleda" Type="Self.tblTipPregleda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVrstaPregleda">
+              <PropertyRef Name="vrstaPregledaID" />
+            </Principal>
+            <Dependent Role="tblTipPregleda">
+              <PropertyRef Name="vrstaPregledaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ZakazivanjePregledaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tblDoktors" EntityType="Self.tblDoktor" />
+          <EntitySet Name="tblKorisniks" EntityType="Self.tblKorisnik" />
+          <EntitySet Name="tblPacijents" EntityType="Self.tblPacijent" />
+          <EntitySet Name="tblPodtipPregledas" EntityType="Self.tblPodtipPregleda" />
+          <EntitySet Name="tblPregleds" EntityType="Self.tblPregled" />
+          <EntitySet Name="tblTipPregledas" EntityType="Self.tblTipPregleda" />
+          <EntitySet Name="tblUstanovas" EntityType="Self.tblUstanova" />
+          <EntitySet Name="tblVrstaPregledas" EntityType="Self.tblVrstaPregleda" />
+          <EntitySet Name="vwDoktors" EntityType="Self.vwDoktor" />
+          <EntitySet Name="vwPacijents" EntityType="Self.vwPacijent" />
+          <EntitySet Name="vwPodtipPregledas" EntityType="Self.vwPodtipPregleda" />
+          <EntitySet Name="vwTipPregledas" EntityType="Self.vwTipPregleda" />
+          <EntitySet Name="vwUstanovas" EntityType="Self.vwUstanova" />
+          <EntitySet Name="vwVrstaPregledas" EntityType="Self.vwVrstaPregleda" />
+          <AssociationSet Name="FK_tblPregled_tblDoktor" Association="Self.FK_tblPregled_tblDoktor">
+            <End Role="tblDoktor" EntitySet="tblDoktors" />
+            <End Role="tblPregled" EntitySet="tblPregleds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPregled_tblPacijent" Association="Self.FK_tblPregled_tblPacijent">
+            <End Role="tblPacijent" EntitySet="tblPacijents" />
+            <End Role="tblPregled" EntitySet="tblPregleds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPodtipPregleda_tblTipPregleda" Association="Self.FK_tblPodtipPregleda_tblTipPregleda">
+            <End Role="tblTipPregleda" EntitySet="tblTipPregledas" />
+            <End Role="tblPodtipPregleda" EntitySet="tblPodtipPregledas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPregled_tblUstanova" Association="Self.FK_tblPregled_tblUstanova">
+            <End Role="tblUstanova" EntitySet="tblUstanovas" />
+            <End Role="tblPregled" EntitySet="tblPregleds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPregled_tblVrstaPregleda" Association="Self.FK_tblPregled_tblVrstaPregleda">
+            <End Role="tblVrstaPregleda" EntitySet="tblVrstaPregledas" />
+            <End Role="tblPregled" EntitySet="tblPregleds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTipPregleda_tblVrstaPregleda" Association="Self.FK_tblTipPregleda_tblVrstaPregleda">
+            <End Role="tblVrstaPregleda" EntitySet="tblVrstaPregledas" />
+            <End Role="tblTipPregleda" EntitySet="tblTipPregledas" />
+          </AssociationSet>
+          <EntitySet Name="vwPregleds" EntityType="ZakazivanjePregledaModel.vwPregled" />
+        </EntityContainer>
+        <EntityType Name="vwPregled">
+          <Key>
+            <PropertyRef Name="pregledID" />
+          </Key>
+          <Property Name="pregledID" Type="Int32" Nullable="false" />
+          <Property Name="terminPregleda" Type="DateTime" Precision="0" />
+          <Property Name="vremePregleda" Type="Time" Precision="7" />
+          <Property Name="dodatneNapomene" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ustanovaID" Type="Int32" />
+          <Property Name="pacijentID" Type="Int32" />
+          <Property Name="vrstaPregledaID" Type="Int32" />
+          <Property Name="doktorID" Type="Int32" />
+          <Property Name="imePacijenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="prezimePacijenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="imeDoktora" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="prezimeDoktora" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="specijalizacija" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nazivUstanove" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nazivVrstePregleda" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ZakazivanjePregledaModelStoreContainer" CdmEntityContainer="ZakazivanjePregledaEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDoktors">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.tblDoktor">
+              <MappingFragment StoreEntitySet="tblDoktor">
+                <ScalarProperty Name="doktorID" ColumnName="doktorID" />
+                <ScalarProperty Name="imeDoktora" ColumnName="imeDoktora" />
+                <ScalarProperty Name="prezimeDoktora" ColumnName="prezimeDoktora" />
+                <ScalarProperty Name="datumRodjenjaDoktora" ColumnName="datumRodjenjaDoktora" />
+                <ScalarProperty Name="brojTelefonaDoktora" ColumnName="brojTelefonaDoktora" />
+                <ScalarProperty Name="brojLicence" ColumnName="brojLicence" />
+                <ScalarProperty Name="specijalizacija" ColumnName="specijalizacija" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblKorisniks">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.tblKorisnik">
+              <MappingFragment StoreEntitySet="tblKorisnik">
+                <ScalarProperty Name="korisnikID" ColumnName="korisnikID" />
+                <ScalarProperty Name="sifraKorisnika" ColumnName="sifraKorisnika" />
+                <ScalarProperty Name="emailKorisnika" ColumnName="emailKorisnika" />
+                <ScalarProperty Name="potvrdjenaSifraKorisnika" ColumnName="potvrdjenaSifraKorisnika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPacijents">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.tblPacijent">
+              <MappingFragment StoreEntitySet="tblPacijent">
+                <ScalarProperty Name="pacijentID" ColumnName="pacijentID" />
+                <ScalarProperty Name="imePacijenta" ColumnName="imePacijenta" />
+                <ScalarProperty Name="prezimePacijenta" ColumnName="prezimePacijenta" />
+                <ScalarProperty Name="adresaPacijenta" ColumnName="adresaPacijenta" />
+                <ScalarProperty Name="polPacijenta" ColumnName="polPacijenta" />
+                <ScalarProperty Name="datumRodjenjaPacijenta" ColumnName="datumRodjenjaPacijenta" />
+                <ScalarProperty Name="jmbgPacijenta" ColumnName="jmbgPacijenta" />
+                <ScalarProperty Name="brojTelefonaPacijenta" ColumnName="brojTelefonaPacijenta" />
+                <ScalarProperty Name="lbo" ColumnName="lbo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPodtipPregledas">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.tblPodtipPregleda">
+              <MappingFragment StoreEntitySet="tblPodtipPregleda">
+                <ScalarProperty Name="podtipPregledaID" ColumnName="podtipPregledaID" />
+                <ScalarProperty Name="nazivPodtipaPregleda" ColumnName="nazivPodtipaPregleda" />
+                <ScalarProperty Name="tipPregledaID" ColumnName="tipPregledaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPregleds">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.tblPregled">
+              <MappingFragment StoreEntitySet="tblPregled">
+                <ScalarProperty Name="pregledID" ColumnName="pregledID" />
+                <ScalarProperty Name="terminPregleda" ColumnName="terminPregleda" />
+                <ScalarProperty Name="vremePregleda" ColumnName="vremePregleda" />
+                <ScalarProperty Name="dodatneNapomene" ColumnName="dodatneNapomene" />
+                <ScalarProperty Name="ustanovaID" ColumnName="ustanovaID" />
+                <ScalarProperty Name="pacijentID" ColumnName="pacijentID" />
+                <ScalarProperty Name="vrstaPregledaID" ColumnName="vrstaPregledaID" />
+                <ScalarProperty Name="doktorID" ColumnName="doktorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTipPregledas">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.tblTipPregleda">
+              <MappingFragment StoreEntitySet="tblTipPregleda">
+                <ScalarProperty Name="tipPregledaID" ColumnName="tipPregledaID" />
+                <ScalarProperty Name="nazivTipaPregleda" ColumnName="nazivTipaPregleda" />
+                <ScalarProperty Name="vrstaPregledaID" ColumnName="vrstaPregledaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUstanovas">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.tblUstanova">
+              <MappingFragment StoreEntitySet="tblUstanova">
+                <ScalarProperty Name="ustanovaID" ColumnName="ustanovaID" />
+                <ScalarProperty Name="nazivUstanove" ColumnName="nazivUstanove" />
+                <ScalarProperty Name="adresaUstanove" ColumnName="adresaUstanove" />
+                <ScalarProperty Name="mestoUstanove" ColumnName="mestoUstanove" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVrstaPregledas">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.tblVrstaPregleda">
+              <MappingFragment StoreEntitySet="tblVrstaPregleda">
+                <ScalarProperty Name="vrstaPregledaID" ColumnName="vrstaPregledaID" />
+                <ScalarProperty Name="nazivVrstePregleda" ColumnName="nazivVrstePregleda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwDoktors">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.vwDoktor">
+              <MappingFragment StoreEntitySet="vwDoktor">
+                <ScalarProperty Name="doktorID" ColumnName="doktorID" />
+                <ScalarProperty Name="imeDoktora" ColumnName="imeDoktora" />
+                <ScalarProperty Name="prezimeDoktora" ColumnName="prezimeDoktora" />
+                <ScalarProperty Name="datumRodjenjaDoktora" ColumnName="datumRodjenjaDoktora" />
+                <ScalarProperty Name="brojTelefonaDoktora" ColumnName="brojTelefonaDoktora" />
+                <ScalarProperty Name="brojLicence" ColumnName="brojLicence" />
+                <ScalarProperty Name="specijalizacija" ColumnName="specijalizacija" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwPacijents">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.vwPacijent">
+              <MappingFragment StoreEntitySet="vwPacijent">
+                <ScalarProperty Name="pacijentID" ColumnName="pacijentID" />
+                <ScalarProperty Name="imePacijenta" ColumnName="imePacijenta" />
+                <ScalarProperty Name="prezimePacijenta" ColumnName="prezimePacijenta" />
+                <ScalarProperty Name="adresaPacijenta" ColumnName="adresaPacijenta" />
+                <ScalarProperty Name="polPacijenta" ColumnName="polPacijenta" />
+                <ScalarProperty Name="datumRodjenjaPacijenta" ColumnName="datumRodjenjaPacijenta" />
+                <ScalarProperty Name="jmbgPacijenta" ColumnName="jmbgPacijenta" />
+                <ScalarProperty Name="brojTelefonaPacijenta" ColumnName="brojTelefonaPacijenta" />
+                <ScalarProperty Name="lbo" ColumnName="lbo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwPodtipPregledas">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.vwPodtipPregleda">
+              <MappingFragment StoreEntitySet="vwPodtipPregleda">
+                <ScalarProperty Name="podtipPregledaID" ColumnName="podtipPregledaID" />
+                <ScalarProperty Name="nazivPodtipaPregleda" ColumnName="nazivPodtipaPregleda" />
+                <ScalarProperty Name="tipPregledaID" ColumnName="tipPregledaID" />
+                <ScalarProperty Name="nazivTipaPregleda" ColumnName="nazivTipaPregleda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwTipPregledas">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.vwTipPregleda">
+              <MappingFragment StoreEntitySet="vwTipPregleda">
+                <ScalarProperty Name="tipPregledaID" ColumnName="tipPregledaID" />
+                <ScalarProperty Name="nazivTipaPregleda" ColumnName="nazivTipaPregleda" />
+                <ScalarProperty Name="vrstaPregledaID" ColumnName="vrstaPregledaID" />
+                <ScalarProperty Name="nazivVrstePregleda" ColumnName="nazivVrstePregleda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwUstanovas">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.vwUstanova">
+              <MappingFragment StoreEntitySet="vwUstanova">
+                <ScalarProperty Name="ustanovaID" ColumnName="ustanovaID" />
+                <ScalarProperty Name="nazivUstanove" ColumnName="nazivUstanove" />
+                <ScalarProperty Name="adresaUstanove" ColumnName="adresaUstanove" />
+                <ScalarProperty Name="mestoUstanove" ColumnName="mestoUstanove" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwVrstaPregledas">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.vwVrstaPregleda">
+              <MappingFragment StoreEntitySet="vwVrstaPregleda">
+                <ScalarProperty Name="vrstaPregledaID" ColumnName="vrstaPregledaID" />
+                <ScalarProperty Name="nazivVrstePregleda" ColumnName="nazivVrstePregleda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwPregleds">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.vwPregled">
+              <MappingFragment StoreEntitySet="vwPregled">
+                <ScalarProperty Name="nazivVrstePregleda" ColumnName="nazivVrstePregleda" />
+                <ScalarProperty Name="nazivUstanove" ColumnName="nazivUstanove" />
+                <ScalarProperty Name="specijalizacija" ColumnName="specijalizacija" />
+                <ScalarProperty Name="prezimeDoktora" ColumnName="prezimeDoktora" />
+                <ScalarProperty Name="imeDoktora" ColumnName="imeDoktora" />
+                <ScalarProperty Name="prezimePacijenta" ColumnName="prezimePacijenta" />
+                <ScalarProperty Name="imePacijenta" ColumnName="imePacijenta" />
+                <ScalarProperty Name="doktorID" ColumnName="doktorID" />
+                <ScalarProperty Name="vrstaPregledaID" ColumnName="vrstaPregledaID" />
+                <ScalarProperty Name="pacijentID" ColumnName="pacijentID" />
+                <ScalarProperty Name="ustanovaID" ColumnName="ustanovaID" />
+                <ScalarProperty Name="dodatneNapomene" ColumnName="dodatneNapomene" />
+                <ScalarProperty Name="vremePregleda" ColumnName="vremePregleda" />
+                <ScalarProperty Name="terminPregleda" ColumnName="terminPregleda" />
+                <ScalarProperty Name="pregledID" ColumnName="pregledID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
