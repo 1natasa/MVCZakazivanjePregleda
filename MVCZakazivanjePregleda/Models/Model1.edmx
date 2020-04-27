@@ -32,9 +32,9 @@
             <PropertyRef Name="korisnikID" />
           </Key>
           <Property Name="korisnikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="sifraKorisnika" Type="nvarchar" MaxLength="50" />
           <Property Name="emailKorisnika" Type="nvarchar" MaxLength="50" />
-          <Property Name="potvrdjenaSifraKorisnika" Type="nvarchar" MaxLength="50" />
+          <Property Name="korisnickoIme" Type="nvarchar" MaxLength="50" />
+          <Property Name="sifraKorisnika" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblPacijent">
           <Key>
@@ -396,15 +396,6 @@ warning 6002: The table/view 'ZakazivanjePregleda.dbo.vwVrstaPregleda' does not 
           <Property Name="specijalizacija" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblPregleds" Relationship="Self.FK_tblPregled_tblDoktor" FromRole="tblDoktor" ToRole="tblPregled" />
         </EntityType>
-        <EntityType Name="tblKorisnik">
-          <Key>
-            <PropertyRef Name="korisnikID" />
-          </Key>
-          <Property Name="korisnikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sifraKorisnika" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="emailKorisnika" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="potvrdjenaSifraKorisnika" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="tblPacijent">
           <Key>
             <PropertyRef Name="pacijentID" />
@@ -610,7 +601,6 @@ warning 6002: The table/view 'ZakazivanjePregleda.dbo.vwVrstaPregleda' does not 
         <EntityContainer Name="ZakazivanjePregledaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="tblDoktors" EntityType="Self.tblDoktor" />
-          <EntitySet Name="tblKorisniks" EntityType="Self.tblKorisnik" />
           <EntitySet Name="tblPacijents" EntityType="Self.tblPacijent" />
           <EntitySet Name="tblPodtipPregledas" EntityType="Self.tblPodtipPregleda" />
           <EntitySet Name="tblPregleds" EntityType="Self.tblPregled" />
@@ -648,6 +638,7 @@ warning 6002: The table/view 'ZakazivanjePregleda.dbo.vwVrstaPregleda' does not 
             <End Role="tblTipPregleda" EntitySet="tblTipPregledas" />
           </AssociationSet>
           <EntitySet Name="vwPregleds" EntityType="ZakazivanjePregledaModel.vwPregled" />
+          <EntitySet Name="tblKorisniks" EntityType="ZakazivanjePregledaModel.tblKorisnik" />
         </EntityContainer>
         <EntityType Name="vwPregled">
           <Key>
@@ -668,6 +659,15 @@ warning 6002: The table/view 'ZakazivanjePregleda.dbo.vwVrstaPregleda' does not 
           <Property Name="specijalizacija" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="nazivUstanove" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="nazivVrstePregleda" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblKorisnik">
+          <Key>
+            <PropertyRef Name="korisnikID" />
+          </Key>
+          <Property Name="korisnikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emailKorisnika" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="korisnickoIme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sifraKorisnika" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -696,16 +696,6 @@ warning 6002: The table/view 'ZakazivanjePregleda.dbo.vwVrstaPregleda' does not 
                 <ScalarProperty Name="brojTelefonaDoktora" ColumnName="brojTelefonaDoktora" />
                 <ScalarProperty Name="brojLicence" ColumnName="brojLicence" />
                 <ScalarProperty Name="specijalizacija" ColumnName="specijalizacija" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblKorisniks">
-            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.tblKorisnik">
-              <MappingFragment StoreEntitySet="tblKorisnik">
-                <ScalarProperty Name="korisnikID" ColumnName="korisnikID" />
-                <ScalarProperty Name="sifraKorisnika" ColumnName="sifraKorisnika" />
-                <ScalarProperty Name="emailKorisnika" ColumnName="emailKorisnika" />
-                <ScalarProperty Name="potvrdjenaSifraKorisnika" ColumnName="potvrdjenaSifraKorisnika" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -858,6 +848,16 @@ warning 6002: The table/view 'ZakazivanjePregleda.dbo.vwVrstaPregleda' does not 
                 <ScalarProperty Name="vremePregleda" ColumnName="vremePregleda" />
                 <ScalarProperty Name="terminPregleda" ColumnName="terminPregleda" />
                 <ScalarProperty Name="pregledID" ColumnName="pregledID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblKorisniks">
+            <EntityTypeMapping TypeName="ZakazivanjePregledaModel.tblKorisnik">
+              <MappingFragment StoreEntitySet="tblKorisnik">
+                <ScalarProperty Name="sifraKorisnika" ColumnName="sifraKorisnika" />
+                <ScalarProperty Name="korisnickoIme" ColumnName="korisnickoIme" />
+                <ScalarProperty Name="emailKorisnika" ColumnName="emailKorisnika" />
+                <ScalarProperty Name="korisnikID" ColumnName="korisnikID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

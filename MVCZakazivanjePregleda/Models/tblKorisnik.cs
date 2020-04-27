@@ -15,14 +15,8 @@ namespace MVCZakazivanjePregleda.Models
     public partial class tblKorisnik
     {
         public int korisnikID { get; set; }
-
-        [System.ComponentModel.DisplayName("Sifra")]
-        public string sifraKorisnika { get; set; }
-
-        [System.ComponentModel.DisplayName("Email")]
         public string emailKorisnika { get; set; }
-
-        [System.ComponentModel.DisplayName("Potvrdi sifru")]
-        public string potvrdjenaSifraKorisnika { get; set; }
+        public string korisnickoIme { get; set; }
+        public string sifraKorisnika { get; set; }
     }
 }

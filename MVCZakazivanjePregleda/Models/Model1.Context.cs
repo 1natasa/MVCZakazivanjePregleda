@@ -27,7 +27,6 @@ namespace MVCZakazivanjePregleda.Models
     
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tblDoktor> tblDoktors { get; set; }
-        public virtual DbSet<tblKorisnik> tblKorisniks { get; set; }
         public virtual DbSet<tblPacijent> tblPacijents { get; set; }
         public virtual DbSet<tblPodtipPregleda> tblPodtipPregledas { get; set; }
         public virtual DbSet<tblPregled> tblPregleds { get; set; }
@@ -41,5 +40,6 @@ namespace MVCZakazivanjePregleda.Models
         public virtual DbSet<vwUstanova> vwUstanovas { get; set; }
         public virtual DbSet<vwVrstaPregleda> vwVrstaPregledas { get; set; }
         public virtual DbSet<vwPregled> vwPregleds { get; set; }
+        public virtual DbSet<tblKorisnik> tblKorisniks { get; set; }
     }
 }

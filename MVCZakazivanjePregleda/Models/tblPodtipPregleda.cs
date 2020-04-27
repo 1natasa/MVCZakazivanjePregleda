@@ -11,7 +11,7 @@ namespace MVCZakazivanjePregleda.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class tblPodtipPregleda
     {
 
@@ -20,7 +20,7 @@ namespace MVCZakazivanjePregleda.Models
         [System.ComponentModel.DisplayName("Podtip pregleda")]
         public string nazivPodtipaPregleda { get; set; }
         public Nullable<int> tipPregledaID { get; set; }
-    
+
         public virtual tblTipPregleda tblTipPregleda { get; set; }
     }
 }

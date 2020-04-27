@@ -43,7 +43,7 @@ namespace MVCZakazivanjePregleda.Models
 
         [System.ComponentModel.DisplayName("Doktor")]
         public Nullable<int> doktorID { get; set; }
-    
+
         public virtual tblDoktor tblDoktor { get; set; }
         public virtual tblPacijent tblPacijent { get; set; }
         public virtual tblUstanova tblUstanova { get; set; }

@@ -11,7 +11,7 @@ namespace MVCZakazivanjePregleda.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class tblUstanova
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +19,7 @@ namespace MVCZakazivanjePregleda.Models
         {
             this.tblPregleds = new HashSet<tblPregled>();
         }
-    
+
         public int ustanovaID { get; set; }
         [System.ComponentModel.DisplayName("Naziv ")]
         public string nazivUstanove { get; set; }
@@ -32,12 +32,14 @@ namespace MVCZakazivanjePregleda.Models
 
 
         [System.ComponentModel.DisplayName("Ustanova")]
-        public string ustanova {
-            get {
+        public string ustanova
+        {
+            get
+            {
                 return nazivUstanove + "," + mestoUstanove;
             }
         }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPregled> tblPregleds { get; set; }
     }

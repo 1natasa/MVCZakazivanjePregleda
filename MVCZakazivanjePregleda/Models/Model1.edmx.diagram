@@ -7,7 +7,6 @@
       <Diagram DiagramId="1862cbac99744a6e97aa54aa7297daeb" Name="Diagram1">
         <EntityTypeShape EntityType="ZakazivanjePregledaModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ZakazivanjePregledaModel.tblDoktor" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ZakazivanjePregledaModel.tblKorisnik" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ZakazivanjePregledaModel.tblPacijent" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ZakazivanjePregledaModel.tblPodtipPregleda" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ZakazivanjePregledaModel.tblPregled" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
@@ -27,6 +26,7 @@
         <AssociationConnector Association="ZakazivanjePregledaModel.FK_tblPregled_tblVrstaPregleda" ManuallyRouted="false" />
         <AssociationConnector Association="ZakazivanjePregledaModel.FK_tblTipPregleda_tblVrstaPregleda" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ZakazivanjePregledaModel.vwPregled" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ZakazivanjePregledaModel.tblKorisnik" Width="1.5" PointX="5.375" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

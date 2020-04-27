@@ -130,15 +130,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\tblDoktorsController.cs" />
+    <Compile Include="Controllers\tblKorisnikController.cs" />
     <Compile Include="Controllers\tblPacijentsController.cs" />
     <Compile Include="Controllers\tblPodtipPregledasController.cs" />
     <Compile Include="Controllers\tblPregledsController.cs" />
     <Compile Include="Controllers\tblTipPregledasController.cs" />
     <Compile Include="Controllers\tblUstanovasController.cs" />
     <Compile Include="Controllers\tblVrstaPregledasController.cs" />
+    <Compile Include="Crypto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Extended\tblKorisnik.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -295,6 +298,7 @@
     <Content Include="Views\tblPregleds\Details.cshtml" />
     <Content Include="Views\tblPregleds\Edit.cshtml" />
     <Content Include="Views\tblPregleds\Index.cshtml" />
+    <Content Include="Views\tblKorisnik\Registration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

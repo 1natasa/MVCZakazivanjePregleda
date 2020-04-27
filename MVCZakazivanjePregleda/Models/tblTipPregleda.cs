@@ -11,7 +11,7 @@ namespace MVCZakazivanjePregleda.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class tblTipPregleda
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,15 +19,15 @@ namespace MVCZakazivanjePregleda.Models
         {
             this.tblPodtipPregledas = new HashSet<tblPodtipPregleda>();
         }
-    
+
         public int tipPregledaID { get; set; }
 
         [System.ComponentModel.DisplayName("Tip pregleda")]
         public string nazivTipaPregleda { get; set; }
         public Nullable<int> vrstaPregledaID { get; set; }
 
-       
-    
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPodtipPregleda> tblPodtipPregledas { get; set; }
         public virtual tblVrstaPregleda tblVrstaPregleda { get; set; }

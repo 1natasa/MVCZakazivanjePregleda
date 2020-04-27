@@ -20,7 +20,7 @@ namespace MVCZakazivanjePregleda.Models
         {
             this.tblPregleds = new HashSet<tblPregled>();
         }
-        
+
         public int doktorID { get; set; }
         [System.ComponentModel.DisplayName("Ime")]
         public string imeDoktora { get; set; }
@@ -41,11 +41,12 @@ namespace MVCZakazivanjePregleda.Models
         [System.ComponentModel.DisplayName("Doktor")]
         public string doktor
         {
-            get {
+            get
+            {
                 return imeDoktora + " " + prezimeDoktora;
             }
         }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPregled> tblPregleds { get; set; }
     }
