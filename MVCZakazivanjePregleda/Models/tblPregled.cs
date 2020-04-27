@@ -17,9 +17,9 @@ namespace MVCZakazivanjePregleda.Models
     {
         public int pregledID { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [System.ComponentModel.DisplayName("Datum")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> terminPregleda { get; set; }
 
         [Required(ErrorMessage = "Appointment Time is required")]

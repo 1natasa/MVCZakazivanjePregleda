@@ -10,11 +10,13 @@ using MVCZakazivanjePregleda.Models;
 
 namespace MVCZakazivanjePregleda.Controllers
 {
+    
     public class tblPregledsController : Controller
     {
         private ZakazivanjePregledaEntities db = new ZakazivanjePregledaEntities();
 
         // GET: tblPregleds
+        [Authorize]
         public ActionResult Index()
         {
             var tblPregleds = db.tblPregleds.Include(t => t.tblDoktor).Include(t => t.tblPacijent).Include(t => t.tblUstanova).Include(t => t.tblVrstaPregleda);

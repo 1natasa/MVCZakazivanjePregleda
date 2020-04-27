@@ -15,6 +15,7 @@ namespace MVCZakazivanjePregleda.Controllers
         private ZakazivanjePregledaEntities db = new ZakazivanjePregledaEntities();
 
         // GET: tblPodtipPregledas
+        
         public ActionResult Index()
         {
             var tblPodtipPregledas = db.tblPodtipPregledas.Include(t => t.tblTipPregleda);

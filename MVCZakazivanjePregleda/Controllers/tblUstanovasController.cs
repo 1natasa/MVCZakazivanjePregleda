@@ -12,9 +12,11 @@ namespace MVCZakazivanjePregleda.Controllers
 {
     public class tblUstanovasController : Controller
     {
+        
         private ZakazivanjePregledaEntities db = new ZakazivanjePregledaEntities();
 
         // GET: tblUstanovas
+        
         public ActionResult Index()
         {
             return View(db.tblUstanovas.ToList());

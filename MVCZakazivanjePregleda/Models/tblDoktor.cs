@@ -20,7 +20,7 @@ namespace MVCZakazivanjePregleda.Models
         {
             this.tblPregleds = new HashSet<tblPregled>();
         }
-    
+        
         public int doktorID { get; set; }
         [System.ComponentModel.DisplayName("Ime")]
         public string imeDoktora { get; set; }
@@ -28,7 +28,7 @@ namespace MVCZakazivanjePregleda.Models
         public string prezimeDoktora { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [System.ComponentModel.DisplayName("Datum rodjenja")]
         public Nullable<System.DateTime> datumRodjenjaDoktora { get; set; }
         [System.ComponentModel.DisplayName("Broj telefona")]

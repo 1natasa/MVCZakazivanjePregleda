@@ -15,6 +15,7 @@ namespace MVCZakazivanjePregleda.Controllers
         private ZakazivanjePregledaEntities db = new ZakazivanjePregledaEntities();
 
         // GET: tblPacijents
+        
         public ActionResult Index()
         {
             return View(db.tblPacijents.ToList());

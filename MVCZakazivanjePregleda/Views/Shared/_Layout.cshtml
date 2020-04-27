@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Zakazivanje pregleda</title>
+    
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -19,16 +21,17 @@
                 @Html.ActionLink("Zakazivanje pregleda", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Pregled", "Index", "tblPregleds")</li>
-                    <li>@Html.ActionLink("Doktor", "Index", "tblDoktors")</li>
-                    <li>@Html.ActionLink("Pacijent", "Index", "tblPacijents")</li>
-                    <li>@Html.ActionLink("Ustanova", "Index", "tblUstanovas")</li>
-                    <li>@Html.ActionLink("Vrsta pregleda", "Index", "tblVrstaPregledas")</li>
-                    <li>@Html.ActionLink("Tip pregleda", "Index", "tblTipPregledas")</li>
-                    <li>@Html.ActionLink("Podtip pregleda", "Index", "tblPodtipPregledas")</li>
+                <ul class="nav navbar-nav"> 
+                        
+                        <li>@Html.ActionLink("Pregled", "Index", "tblPregleds")</li>
+                        <li>@Html.ActionLink("Doktor", "Index", "tblDoktors")</li>
+                        <li>@Html.ActionLink("Pacijent", "Index", "tblPacijents")</li>
+                        <li>@Html.ActionLink("Ustanova", "Index", "tblUstanovas")</li>
+                        <li>@Html.ActionLink("Vrsta pregleda", "Index", "tblVrstaPregledas")</li>
+                        <li>@Html.ActionLink("Tip pregleda", "Index", "tblTipPregledas")</li>
+                        <li>@Html.ActionLink("Podtip pregleda", "Index", "tblPodtipPregledas")</li>
+                        <li>@Html.ActionLink("Izloguj se", "Logout", "Profil")</li>
+
                 </ul>
                 <!-- <p class="nav navbar-text navbar-right">Hello, @User.Identity.Name!</p> -->
             </div>
